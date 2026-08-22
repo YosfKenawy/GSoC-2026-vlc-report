@@ -12,7 +12,7 @@
 
 ## Project Overview
 
-This project aims to add automated tests to check the behaviour of UI components using the VLC media player. These tests are based on a UI testing framework that simulates user interaction with a mouse and keyboard. The framework creates a separate pseudo sandbox, deletes all VLC data, then generates new data with a media library generation module so the tests dont interfer with VLC data. This project also introduces a new accessibility IDs `AccessibleCompat.id` so that UI elements can be found by automated tests 
+This project aims to add automated tests to check the behaviour of UI components using the VLC media player. These tests are based on a UI testing framework that simulates user interaction with a mouse and keyboard. The framework creates a separate pseudo sandbox, deletes all VLC data, then generates new data with a media library generation module so the tests don't interfere with VLC data. This project also introduces a new accessibility IDs `AccessibleCompat.id` so that UI elements can be found by automated tests.
 
 ## Work timeline
 
@@ -30,7 +30,7 @@ This project aims to add automated tests to check the behaviour of UI components
 
 ### Compiling VLC
 
-I used Ubuntu to work on VLC, i usually didn't use Linux a lot before GSoC, so i think it was a great opportunity to get into linux.
+I used Ubuntu to work on VLC, i usually didn't use Linux a lot before GSoC, so i think it was a great opportunity to get into Linux.
 
 I was able to compile VLC with no problems, later when i rebuilt it i would get errors for deleted files or a wrong path i used for the build command which was a problem when i was compiling VLC with Media Library and it worked by using `--enable-medialib-gen`, with time i knew how to manage the builds better and how to deal with each of these problems.
 
@@ -84,7 +84,7 @@ When a test method declares a controlbar attribute, `_apply_controlbar()` reads 
 
 ### The HTTP Status
 
-The tests needed a way to check the state of each action done: is the video actually paused or the player view in fullscreen? And because the accessible value isn't exposed, so by using the HTTP server interface in VLC made it easier to get the state of the player by using `--extraintf=http`, which exposes a status.xml endpoint that returns the current playback state as XML
+The tests needed a way to check the state of each action done: is the video actually paused or the player view in fullscreen? And because the accessible value isn't exposed, so by using the HTTP server interface in VLC made it easier to get the state of the player by using `--extraintf=http`, which exposes a status.xml endpoint that returns the current playback state as XML.
 
 I built an `HttpStatus` class that reads this endpoint with an HTTP basic auth handler, parses the XML, and exposes methods like get_state(), get_volume(), get_loop(), and more to be used for different tests. This catches cases where the UI looks right, but the backend is out of sync.
 
@@ -101,15 +101,15 @@ Right now the core framework and 41 active tests are working, several areas need
 **Un-disabling tests**: 18 Qt UI shortcut tests are disabled because GlobalShortcuts don't fire during tests. I also had this problem when i ran VLC outside of the test framework, where the shortcuts don't fire also, i found that `ShortcutExt.qml` registers every shortcut with `Qt.ApplicationShortcut` but the problem is that under Xvfb there is no window manager, so the VLC window is never active even if there is focus on the window, the shortcuts don't fire.
 Additionally, mute tests are blocked because VLC's HTTP `status.xml` doesn't expose a `<mute>` element, so it needs to be added in the Lua HTTP interface and then add the mute tests.
 
-**Adding more tests**: More tests can be added, especially in keyboard navigation and other UI parts like the media library and menus
+**Adding more tests**: More tests can be added, especially in keyboard navigation and other UI parts like the media library and menus.
 
 **Windows tests validation**: The framework works on Windows, but it would need more work to validate all the tests and utilities to make them work on Windows.
 
-**CI adjustment**: Run the tests using the CI images to make sure it works well and adjust the CI to work well in VLC runners (Linux)
+**CI adjustment**: Run the tests using the CI images to make sure it works well and adjust the CI to work well in VLC runners (Linux).
 
 ## Video Demo
 
-https://github.com/user-attachments/assets/e90507b7-f868-43ae-ac20-81a375e70bbb
+https://github.com/user-attachments/assets/1110eb06-b2fe-4c41-a3dc-04be2dd6e961
 
 60 tests total: 41 passing, 19 skipped, 0 failures.
 
@@ -119,8 +119,6 @@ My experience with this project and working with VLC was really beneficial in ma
 Technically i learned a lot about git,this helped to manage my commits and merge request to be more efficiently. Also i understood more about testing and how important it is for adding new features and making sure the UI behaviour works well. The most important part was the communication and discussions, and that was really inspiring for me to contribute more.
 
 I'd like to thank my mentor Pierre Lamot for guiding me through this project. Pierre was really responsive to my questions and helped me a lot with many blockers i had. I'd also like to thank the 
-
-
 VideoLAN organization and their community, i admire their work and how helpful and encouraging the other members are. I am grateful that i had the opportunity to
 contribute to VLC.
 
