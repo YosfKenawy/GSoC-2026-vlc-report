@@ -20,13 +20,15 @@ This project aims to add automated tests to check the behaviour of UI components
 
 - **Python 3** 
 
-- **dogtail 2.0** (AT-SPI / accessibility) 
+- **dogtail 2.0**: https://gitlab.com/dogtail/dogtail
 
 - **VLC HTTP interface** (`--extraintf=http`)
 
 - **Qt 6.11.1**
 
-- **Accerciser** for AT-SPI tree inspection during development
+- **Accerciser**: https://gitlab.gnome.org/GNOME/accerciser
+
+- **AT-SPI**: https://gitlab.gnome.org/GNOME/at-spi2-core
 
 ### Compiling VLC
 
